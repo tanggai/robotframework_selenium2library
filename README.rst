@@ -10,7 +10,7 @@ Selenium 2 (WebDriver) library for Robot Framework
 
 What's new in this fork
 -----------------------
-below keywords are NOT in official Selenium Library:
+below keywords are NOT in official Selenium Library::
 
 Click Link At Table Cell
 Click Element At Table Cell
@@ -22,7 +22,7 @@ Select Window By Hander
 Get Window Handlers
 Get Current Window Hander
 
-below keyword are in official Selenium Library:
+below keyword are in official Selenium Library::
 Get Table Cell
 Table Should Contain
 Table Footer Should Contain
