@@ -11,24 +11,40 @@ Selenium 2 (WebDriver) library for Robot Framework
 What's new in this fork
 -----------------------
 below keywords are NOT in official Selenium Library:
+
 ```robotframework
 Click Link At Table Cell
+
 Click Element At Table Cell
+
 Click Subelement At Table Cell
+
 Get Table Rows
+
 Get Table Cols At Row
+
 Get Index In Table Column
+
 Select Window By Hander
+
 Get Window Handlers
+
 Get Current Window Hander
 ```
+
 below keyword are in official Selenium Library:
+
 ```robotframework
 Get Table Cell
+
 Table Should Contain
+
 Table Footer Should Contain
+
 Table Header Should Contain
+
 Table Row Should Contain
+
 Table Column Should Contain
 ```
 
