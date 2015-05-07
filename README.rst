@@ -11,7 +11,6 @@ Selenium 2 (WebDriver) library for Robot Framework
 What's new in this fork
 -----------------------
 below keywords are NOT in official Selenium Library:
-
 ```c
 Click Link At Table Cell
 Click Element At Table Cell
@@ -25,8 +24,7 @@ Get Current Window Hander
 ```
 
 below keyword are in official Selenium Library:
-
-```robotframework
+```c
 Get Table Cell
 Table Should Contain
 Table Footer Should Contain
