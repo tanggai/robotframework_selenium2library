@@ -301,6 +301,26 @@ class _BrowserManagementKeywords(KeywordGroup):
         """Sets the top frame as the current frame."""
         self._current_browser().switch_to_default_content()
 
+    #By AntZ -- Start#
+
+    def get_current_window_handle(self):
+        """Returns and logs handle of current window known to the browser."""
+        return self._current_browser().get_current_window_handle()
+
+    def get_windows_handles(self):
+        """Returns and logs handles of all windows known to the browser."""
+        return self._current_browser().get_window_handles()
+
+    def select_new_window(self):
+        start_handle = self._current_browser().get_current_window_handle()
+        handles = self._current_browser().get_window_handles()
+        if len(handles) > 1 and start_handle != handles[-1]:
+            self._current_browser().switch_to_window(handles[-1])
+            return start_handle
+        raise AssertionError("No new window found")
+
+    # By AntZ -- End#
+
     # Public, browser/current page properties
 
     def get_location(self):
@@ -454,7 +474,6 @@ class _BrowserManagementKeywords(KeywordGroup):
             browser.implicitly_wait(self._implicit_wait_in_secs)
         return old_wait
     
-
     def set_browser_implicit_wait(self, seconds):
         """Sets current browser's implicit wait in seconds.
 
@@ -470,23 +489,6 @@ class _BrowserManagementKeywords(KeywordGroup):
         implicit_wait_in_secs = robot.utils.timestr_to_secs(seconds)
         self._current_browser().implicitly_wait(implicit_wait_in_secs)
 
-    # Private
-
-	#Add by Huangyu Start#
-    def select_window_by_handle(self, locator=None):
-        self._window_manager.select_by_handle(self._current_browser(), locator)
-
-    def get_window_handles(self):
-        """Returns and logs handles of all windows known to the browser."""
-        return self._log_list(self._window_manager.get_window_handles(self._current_browser()))
-
-    def get_current_window_handle(self):
-        """Returns and logs handle of current window known to the browser."""
-        return self._log_list(self._window_manager.get_current_window_handle(self._current_browser()))
-	
-    #Add by Huangyu End#
-	
-	
     def _current_browser(self):
         if not self._cache.current:
             raise RuntimeError('No browser is open')
