@@ -13,6 +13,7 @@ class WindowManager(object):
             None: self._select_by_default
         }
 
+ 
     #Add by Huangyu Start#
     def select_by_handle(self, browser, toHandle):
         browser.switch_to_window(toHandle)
@@ -25,6 +26,7 @@ class WindowManager(object):
         return browser.get_current_window_handle()
     
     #Add by Huangyu End#
+
 	
     def get_window_ids(self, browser):
         return [ window_info[1] for window_info in self._get_window_infos(browser) ]
