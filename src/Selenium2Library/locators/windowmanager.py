@@ -68,18 +68,17 @@ class WindowManager(object):
         if criteria is None or len(criteria) == 0 or criteria.lower() == "null":
             browser.switch_to_window('')
             return
-
-        try:
-            self._select_by_name(browser, criteria)
-            return
-        except ValueError: pass
-
-        try:
-            self._select_by_title(browser, criteria)
-            return
-        except ValueError: pass
-
-        raise ValueError("Unable to locate window with name or title '" + criteria + "'")
+        for handle in browser.get_window_handles():
+            browser.switch_to_window(handle)
+            win = browser.get_current_window_info()
+            if win[0] == criteria:
+                browser.switch_to_window(win[0])
+                return
+            for item in win[2:4]:
+                if item.strip().lower() == criteria.lower():
+                    browser.switch_to_window(win[0])
+                    return
+        raise ValueError("Unable to locate window with handle or name or title or URL '" + criteria + "'")
 
     # Private
 
