@@ -11,7 +11,7 @@ Selenium 2 (WebDriver) library for Robot Framework
 What's new in this fork
 -----------------------
 
-Add keywords::
+Add keywords by qitao and adam::
 
     Click Link At Table Cell
     Click Element At Table Cell
