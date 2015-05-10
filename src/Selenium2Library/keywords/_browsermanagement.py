@@ -214,6 +214,9 @@ class _BrowserManagementKeywords(KeywordGroup):
     def close_window(self):
         """Closes currently opened pop-up window."""
         self._current_browser().close()
+        handles = self._current_browser().get_window_handles()
+        if len(handles) >= 1:
+            self._current_browser().switch_to_window(handles[-1])
 
     def get_window_identifiers(self):
         """Returns and logs id attributes of all windows known to the browser."""
@@ -312,12 +315,15 @@ class _BrowserManagementKeywords(KeywordGroup):
         return self._current_browser().get_window_handles()
 
     def select_new_window(self):
-        start_handle = self._current_browser().get_current_window_handle()
+        try:
+            start_handle = self._current_browser().get_current_window_handle()
+        except NoSuchWindowException: pass
         handles = self._current_browser().get_window_handles()
-        if len(handles) > 1 and start_handle != handles[-1]:
-            self._current_browser().switch_to_window(handles[-1])
-            return start_handle
-        raise AssertionError("No new window found")
+        if len(handles) < 1 or handles[-1] == start_handle:
+            raise AssertionError("No new window found")
+        self._current_browser().switch_to_window(handles[-1])
+        print start_handle
+        return start_handle
 
     # By AntZ -- End#
 
