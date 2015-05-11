@@ -11,7 +11,7 @@ Selenium 2 (WebDriver) library for Robot Framework
 What's new in this fork
 -----------------------
 
-Add keywords by qitao and adam (Removed keywords due to Select Window has been updated to support handle, "new", "last")::
+Add keywords customized by qitao and adam::
 
     Click Link At Table Cell
     Click Element At Table Cell
@@ -19,9 +19,6 @@ Add keywords by qitao and adam (Removed keywords due to Select Window has been u
     Get Table Rows
     Get Table Cols At Row
     Get Index In Table Column
-    Select Window By Hander (removed)
-    Get Window Handlers (removed）
-    Get Current Window Hander (removed)
 
 below keywords are in official Selenium Library::
 
