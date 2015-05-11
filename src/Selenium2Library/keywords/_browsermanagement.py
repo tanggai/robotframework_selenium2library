@@ -313,28 +313,6 @@ class _BrowserManagementKeywords(KeywordGroup):
         """Sets the top frame as the current frame."""
         self._current_browser().switch_to_default_content()
 
-    #By AntZ -- Start#
-
-    def get_current_window_handle(self):
-        """Returns and logs handle of current window known to the browser."""
-        return self._current_browser().get_current_window_handle()
-
-    def get_windows_handles(self):
-        """Returns and logs handles of all windows known to the browser."""
-        return self._current_browser().get_window_handles()
-
-    def select_new_window(self):
-        try:
-            start_handle = self._current_browser().get_current_window_handle()
-        except NoSuchWindowException: pass
-        handles = self._current_browser().get_window_handles()
-        if len(handles) < 1 or handles[-1] == start_handle:
-            raise AssertionError("No new window found")
-        self._current_browser().switch_to_window(handles[-1])
-        return start_handle
-
-    # By AntZ -- End#
-
     # Public, browser/current page properties
 
     def get_location(self):
