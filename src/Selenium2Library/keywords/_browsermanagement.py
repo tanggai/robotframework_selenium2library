@@ -298,7 +298,11 @@ class _BrowserManagementKeywords(KeywordGroup):
         | Title Should Be | Popup Title |
         | Select Window |  | | # Chooses the main window again |
         """
+        try:
+            from_handle = self._current_browser().get_current_window_handle()
+        except NoSuchWindowException: pass 
         self._window_manager.select(self._current_browser(), locator)
+        return from_handle if from_handle else None
 
     def unselect_frame(self):
         """Sets the top frame as the current frame."""
@@ -322,7 +326,6 @@ class _BrowserManagementKeywords(KeywordGroup):
         if len(handles) < 1 or handles[-1] == start_handle:
             raise AssertionError("No new window found")
         self._current_browser().switch_to_window(handles[-1])
-        print start_handle
         return start_handle
 
     # By AntZ -- End#

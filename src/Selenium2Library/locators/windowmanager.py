@@ -12,7 +12,7 @@ class WindowManager(object):
             'url': self._select_by_url,
             None: self._select_by_default
         }
-	
+
     def get_window_ids(self, browser):
         return [ window_info[1] for window_info in self._get_window_infos(browser) ]
 
@@ -52,19 +52,30 @@ class WindowManager(object):
             "Unable to locate window with URL '" + criteria + "'")
 
     def _select_by_default(self, browser, criteria):
-        if criteria is None or len(criteria) == 0 or criteria.lower() == "null":
-            browser.switch_to_window('')
+        if criteria.lower() == "current":
             return
-        for handle in browser.get_window_handles():
+        handles = browser.get_window_handles()
+        if criteria is None or len(criteria) == 0 or criteria.lower() == "null":
+            browser.switch_to_window(handles[0])
+            return
+        if criteria.lower() == "last" or criteria.lower() == "latest":
+            browser.switch_to_window(handles[-1])
+            return
+        if criteria.lower() == "new" or criteria.lower() == "newest" or criteria.lower() == "popup":
+            try:
+                start_handle = browser.get_current_window_handle()
+            except NoSuchWindowException:
+                 raise AssertionError("No from window to switch to new window")
+            if len(handles) < 2 or handles[-1] == start_handle:
+               raise AssertionError("No new window to switch to")
+            browser.switch_to_window(handles[-1])
+            return
+        for handle in handles:
             browser.switch_to_window(handle)
-            win = browser.get_current_window_info()
-            if win[0] == criteria:
-                browser.switch_to_window(win[0])
+            if criteria == handle:
                 return
-            for item in win[2:4]:
-                if item.strip().lower() == criteria.lower():
-                    browser.switch_to_window(win[0])
-                    return
+            for item in [x.strip().lower() for x in browser.get_current_window_info()[2:4]]:
+                return if item == criteria.lower()
         raise ValueError("Unable to locate window with handle or name or title or URL '" + criteria + "'")
 
     # Private
