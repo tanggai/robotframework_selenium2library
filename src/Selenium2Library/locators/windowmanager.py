@@ -74,8 +74,9 @@ class WindowManager(object):
             browser.switch_to_window(handle)
             if criteria == handle:
                 return
-            for item in [x.strip().lower() for x in browser.get_current_window_info()[2:4]]:
-                return if item == criteria.lower()
+            for item in browser.get_current_window_info()[2:4]:
+                if item.strip().lower() == criteria.lower():
+                    return
         raise ValueError("Unable to locate window with handle or name or title or URL '" + criteria + "'")
 
     # Private
