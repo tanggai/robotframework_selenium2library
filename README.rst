@@ -19,6 +19,8 @@ Add keywords by qitao and adam::
     Get Table Rows
     Get Table Cols At Row
     Get Index In Table Column
+
+Removed below keywords after enable Select Window to support handle, "new", "last"
     Select Window By Hander
     Get Window Handlers
     Get Current Window Hander
