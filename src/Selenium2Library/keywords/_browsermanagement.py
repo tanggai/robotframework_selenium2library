@@ -283,6 +283,11 @@ class _BrowserManagementKeywords(KeywordGroup):
         same identifier are found, the first one is selected.
 
         Special locator `main` (default) can be used to select the main window.
+        Special locator `last` can be used to switch to the last opened window (may be current).
+        Special locator `new` can be use to switch to the latest opened window (exclude current).
+
+        The handle of current window will be returned before switching to matched window.
+        As window handle is also supported as locator, the returned value could be used to switch back.
 
         It is also possible to specify the approach Selenium2Library should take
         to find a window by specifying a locator strategy:
