@@ -10,8 +10,16 @@ Selenium 2 (WebDriver) library for Robot Framework
 
 What's new in this fork
 -----------------------
+1. Fixed NoSuchWindowException issue:
 
-Add keywords customized by qitao and adam::
+2. Enhanced browser.select_window() without breaking existing usage of it::
+
+    a. let it accept argument 'main' or '' or None to switch to main window -- this is already done
+    b. let it accept argument 'last' to switch to last window;
+    c. let it accept argument 'new' to switch to new window if have (exclude current window);
+    d. always return the handle of current window (the from-window) or None if no current window
+
+3. Add keywords customized by qitao and adam::
 
     Click Link At Table Cell
     Click Element At Table Cell
@@ -20,14 +28,6 @@ Add keywords customized by qitao and adam::
     Get Table Cols At Row
     Get Index In Table Column
 
-below keywords are in official Selenium Library::
-
-    Get Table Cell
-    Table Should Contain
-    Table Footer Should Contain
-    Table Header Should Contain
-    Table Row Should Contain
-    Table Column Should Contain
 
 
 Introduction
