@@ -14,7 +14,8 @@ What's new in this fork
 
 2. Enhanced browser.select_window() without breaking existing usage of it::
 
-    a. let it accept argument 'main' or '' or None to switch to main window -- this is already done
+    a. let it accept argument 'main' or '' or None to switch to main window -- already in
+    b. let accept argument name=name_striing, title=title_string, name_string or title_string -- already in
     b. let it accept argument 'last' to switch to last window (may be current window);
     c. let it accept argument 'new' to switch to new window if have (exclude current window);
     d. always return the handle of current window (the from-window) or None if no current window
